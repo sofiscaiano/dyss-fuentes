@@ -9,14 +9,16 @@ censo_2010_s <- censo_2010 %>%
 
   
 ggplot(censo_2010_s, aes(x = total_poblacion, y = porcentaje, color = provincia)) +
-  geom_point() +
-  scale_x_log10()
+  geom_point(size = 3) +
+  scale_x_log10() +
+  ggtitle("Diagrama de dispersión de la proporción de la población femenina", subtitle="Fuente: Censo Nacional de Población del año 2010")
+  
 
 censo_2010_s %>%
   arrange(porcentaje) %>%
   mutate(provincia=factor(provincia, levels=provincia)) %>%
   ggplot(aes(x = total_poblacion, y = porcentaje, color = provincia)) +
-  geom_point() +
+  geom_point(size = 3) +
   scale_x_log10() +
   facet_wrap(~provincia) +
   theme(legend.position="none")
@@ -28,5 +30,6 @@ censo_2010_s %>%
     ggplot(aes(x = provincia, y = porcentaje, fill=provincia)) +
   geom_col() +
   coord_flip() +
-  scale_fill_hue(c = 70) +
-  theme(legend.position="none")
+  scale_fill_hue(c = 50) +
+  theme(legend.position="none") +
+  ggtitle("Porcentaje de la población femenina por cada provincia argentina", subtitle="Fuente: Censo Nacional de Población del año 2010")
