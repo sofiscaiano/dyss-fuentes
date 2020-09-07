@@ -3,6 +3,8 @@ library(dplyr)
 library(ggplot2)
 library(forcats)
 
+censo_2010
+
 censo_2010_s <- censo_2010 %>%
   transmute(provincia, total_poblacion = total_poblacion / 1000000, mujeres = mujeres / 1000000, porcentaje) %>%
   arrange(porcentaje)
@@ -46,4 +48,7 @@ ggplot(diff_pop, aes(x= pop_2001, y= per, color=provincia)) +
   geom_point() +
   scale_x_log10()
 
-
+jubilaciones_y_pensiones %>%
+  filter(edad >= 65) %>%
+  summarize(total_no = sum(no), total = sum(total)) %>%
+  mutate(percent= total_no / total)
