@@ -57,3 +57,6 @@ analfabetismo %>%
   filter(edad > 10) %>%
   summarize(total_si = sum(si), total = sum(total))
 
+foreign %>%
+  mutate(percent = total_extranjeros / total_pop) %>%
+  arrange(desc(percent))
