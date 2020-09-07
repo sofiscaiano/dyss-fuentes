@@ -33,3 +33,17 @@ censo_2010_s %>%
   scale_fill_hue(c = 50) +
   theme(legend.position="none") +
   ggtitle("Porcentaje de la población femenina por cada provincia argentina", subtitle="Fuente: Censo Nacional de Población del año 2010")
+
+diff_pop <- censo_2001_2010 %>%
+  mutate(diff = pop_2010 - pop_2001) %>%
+  mutate(per = diff / pop_2001)
+
+arrange(diff_pop, desc(diff))
+
+arrange(diff_pop, desc(per))
+
+ggplot(diff_pop, aes(x= pop_2001, y= per, color=provincia)) +
+  geom_point() +
+  scale_x_log10()
+
+
