@@ -9,6 +9,7 @@ censo_2010_s <- censo_2010 %>%
   transmute(provincia, total_poblacion = total_poblacion / 1000000, mujeres = mujeres / 1000000, porcentaje) %>%
   arrange(porcentaje)
 
+arrange(censo_2010_s, desc(porcentaje))
   
 ggplot(censo_2010_s, aes(x = total_poblacion, y = porcentaje, color = provincia)) +
   geom_point(size = 3) +
@@ -60,3 +61,8 @@ analfabetismo %>%
 foreign %>%
   mutate(percent = total_extranjeros / total_pop) %>%
   arrange(desc(percent))
+
+estado_civil_hombres %>%
+  filter(edad >= 30 & edad <= 35) %>%
+  summarize(soltero = sum(soltero), total = sum(total)) %>%
+  mutate(p_soltero = soltero / total)
