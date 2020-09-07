@@ -52,3 +52,8 @@ jubilaciones_y_pensiones %>%
   filter(edad >= 65) %>%
   summarize(total_no = sum(no), total = sum(total)) %>%
   mutate(percent= total_no / total)
+
+analfabetismo %>%
+  filter(edad > 10) %>%
+  summarize(total_si = sum(si), total = sum(total))
+
